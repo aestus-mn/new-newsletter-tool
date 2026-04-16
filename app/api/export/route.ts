@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
     const flagged = bullets.filter((b) => b.flagged && !b.approved);
     const pending = bullets.filter((b) => !b.approved && !b.flagged);
 
-    function makeBulletPara(b: Bullet): Paragraph {
+    const makeBulletPara = (b: Bullet): Paragraph => {
       const text = b.edited_text ?? b.bullet_text;
       return new Paragraph({
         numbering: { reference: 'lp-bullets', level: 0 },
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
         ],
         spacing: { after: 120 },
       });
-    }
+    };
 
     const children: Paragraph[] = [];
 
